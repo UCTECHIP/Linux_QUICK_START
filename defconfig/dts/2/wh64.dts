@@ -21,7 +21,7 @@
 			reg = <0>;
 			status = "okay";
 			compatible = "riscv";
-			riscv,isa = "rv64imafdc";
+			riscv,isa = "rv64imafdcv";
 			mmu-type = "riscv,sv39";
 			clock-frequency = <SYS_CLK>;
 			d-cache-size = <32768>;
@@ -38,7 +38,7 @@
                         reg = <1>;
                         status = "okay";
                         compatible = "riscv";
-                        riscv,isa = "rv64imafdc";
+                        riscv,isa = "rv64imafdcv";
                         mmu-type = "riscv,sv39";
                         clock-frequency = <50000000>;
                         d-cache-size = <32768>;
