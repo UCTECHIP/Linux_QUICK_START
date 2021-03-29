@@ -136,14 +136,14 @@ dtb:	fix_dts
 #Fixed frequency for opensbi
 PHONY += fix_opensbi
 fix_opensbi:
-	$(shell sed -i "s/#define.*WH_HART_COUNT.*/#define WH_HART_COUNT $(CONFIG_HART_NUM)/" build/opensbi/platform/uctechip/$(target)/platform.h)
+	$(shell sed -i "s/#define.*PLATFORM_HART_COUNT.*/#define PLATFORM_HART_COUNT $(CONFIG_HART_NUM)/" build/opensbi/platform/uctechip/$(target)/platform.c)
 
 ifdef CONFIG_Debug
-	$(shell sed -i "s/#define.*WH_SYS_CLK.*/#define WH_SYS_CLK $(CONFIG_SYS_CLK)/" build/opensbi/platform/uctechip/$(target)/platform.h)
+	$(shell sed -i "s/#define.*PLATFORM_UART_INPUT_FREQ.*/#define PLATFORM_UART_INPUT_FREQ $(CONFIG_SYS_CLK)/" build/opensbi/platform/uctechip/$(target)/platform.c)
 endif
 
 #opensbi configuration
-OPENSBI_CFLAGS = PLATFORM=uctechip/$(target) FW_PAYLOAD_PATH=$(CURDIR)/build/linux/vmlinux.bin FW_PAYLOAD_FDT_PATH=$(CURDIR)/build/dts/$(target).dtb
+OPENSBI_CFLAGS = PLATFORM=uctechip/$(target) FW_PAYLOAD_PATH=$(CURDIR)/build/linux/vmlinux.bin FW_FDT_PATH=$(CURDIR)/build/dts/$(target).dtb
 
 ifdef CONFIG_Debug
 OPENSBI_CFLAGS += FW_PAYLOAD_FDT_ADDR=$(CONFIG_DTB_ADDRESS)
